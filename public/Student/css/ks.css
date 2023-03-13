@@ -1,0 +1,243 @@
+body{
+  overflow: hidden;
+  background-color: #7f5539;
+}
+
+.body{
+  width: 70%;
+  margin: 0 15% 0 15%;
+  min-height: 100vh;
+}
+
+.collapsible {
+    background-color: #b08968;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 18px;
+  }
+
+  .collapsible i{
+    float: right;
+  }
+  
+  .active1, .collapsible:hover {
+    background-color: #b08968;
+  }
+  
+  .content1 {
+    padding: 20px 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+  }
+
+  .ann_date{
+    text-align: right;
+  }
+
+  /* Achievement */
+  /* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 70%;
+  height: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* form */
+input[type=text], input[type=textbox], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=textbox] {
+  height: 300px;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #b08968;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #7f5539;
+}
+
+button{border-radius: 8px;background-color: #7f5539; border: none; color: white;padding: 10px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;width: 80%;}
+
+/* achievement */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  background-color: #b08968;
+  width: 30%;
+  height: 100%;
+  margin: 10px;
+  padding:15px 10px;
+  float: left;
+  text-align: center;
+  color:#fefefe;
+}
+
+/*achievement*/
+/* Create a circle shape */
+.wrap {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.progress-radial {
+  float: left;
+  margin-right: 30px;
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid #2f3439;
+  background-color: #b08968;
+}
+
+.progress-radial .overlay {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-color: #fffde8;
+  border-radius: 50%;
+  margin-left: 20px;
+  margin-top: 20px;
+  text-align: center;
+  line-height: 60px;
+  font-size: 16px;
+}
+
+.progress-0 {
+  background-color: #2f3439;
+}
+.progress-10 {
+  background-image: linear-gradient(90deg, #2f3439 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0)), linear-gradient(126deg, #b08968 50%, #2f3439 50%, #2f3439);
+}
+.progress-20 {
+  background-image: linear-gradient(90deg, #2f3439 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0)), linear-gradient(162deg, #b08968 50%, #2f3439 50%, #2f3439);
+}
+.progress-30 {
+  background-image: linear-gradient(90deg, #2f3439 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0)), linear-gradient(198deg, #b08968 50%, #2f3439 50%, #2f3439);
+}
+.progress-40 {
+  background-image: linear-gradient(90deg, #2f3439 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0)), linear-gradient(234deg, #b08968 50%, #2f3439 50%, #2f3439);
+}
+.progress-50 {
+  background-image: linear-gradient(-90deg, #b08968 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0)), linear-gradient(270deg, #b08968 50%, #2f3439 50%, #2f3439);
+}
+.progress-60 {
+  background-image: linear-gradient(-54deg, #b08968 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0)), linear-gradient(270deg, #b08968 50%, #2f3439 50%, #2f3439);
+}
+.progress-70 {
+  background-image: linear-gradient(-18deg, #b08968 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0)), linear-gradient(270deg, #b08968 50%, #2f3439 50%, #2f3439);
+}
+.progress-80 {
+  background-image: linear-gradient(18deg, #b08968 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0)), linear-gradient(270deg, #b08968 50%, #2f3439 50%, #2f3439);
+}
+.progress-90 {
+  background-image: linear-gradient(54deg, #b08968 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0)), linear-gradient(270deg, #b08968 50%, #2f3439 50%, #2f3439);
+}
+.progress-100 {
+  background-image: linear-gradient(90deg, #b08968 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0)), linear-gradient(270deg, #b08968 50%, #2f3439 50%, #2f3439);
+}
+
+
+.course-item {
+  height: 240px;
+  padding: 20px;
+  width: 48%;
+  float: left;
+  margin: 10px;
+}
+
+.main .course-item {
+  background-color: #f1f1f1;
+  height: 220px;
+  padding: 20px;
+  width: 45%;
+  float: left;
+  margin-left: 40px;
+  text-align: center;
+}
+
+.main .course-desc{
+  width: 100%;
+}
+
+.course-title{
+  width: 100%;
+}
+
+.course-desc{
+  width: 70%;
+  float: left;
+}
+
+.course-prog{
+  width: 30%;
+  float: left;
+}
+
+.course-desc button{
+  width: 30%;
+  margin-right: 5px;
+}
+
+.btn{
+border-radius: 8px;background-color: #7f5539; border: none; color: white;padding: 10px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;width: 30%;
+}
+
+#progress{
+  height: 50px;
+  font-size: 16px;
+}
