@@ -17,12 +17,21 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    public $timestamps = false;
     protected $fillable = [
         'name',
+        'phone',
+        'age',
         'email',
         'password',
+        'role',
+        'image',
     ];
 
+    public function hasRole($role)
+{
+    return $this->role == $role;
+}
     /**
      * The attributes that should be hidden for serialization.
      *
