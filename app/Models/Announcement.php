@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Observer\Interfaces\SubjectInterface;
+use App\Observer\Interfaces\ObserverInterface;
 use Illuminate\Support\Facades\DB;
 
 class Announcement extends Model implements SubjectInterface
@@ -14,17 +15,22 @@ class Announcement extends Model implements SubjectInterface
     
     protected $observers = [];
 
-    public function deleteAnnouncement($announcement)
+    public function deleteAnnouncement($announcementID)
     {
-        $this->notify();
+        $announcement = Announcement::find($announcementID);
+        if($announcement){
+            $announcement->delete();
+            $this->notify($announcement);
+        }
+        
     }
 
-    public function attach($observer)
+    public function attach(ObserverInterface $observer)
     {
         $this->observers[] = $observer;
     }
 
-    public function detach($observer)
+    public function detach(ObserverInterface $observer)
     {
         $key = array_search($observer, $this->observers, true);
         if ($key !== false) {
