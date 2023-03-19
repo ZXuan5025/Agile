@@ -1,5 +1,4 @@
 body{
-  overflow: hidden;
   background-color: #7f5539;
 }
 
@@ -24,11 +23,11 @@ body{
   .collapsible i{
     float: right;
   }
-  
+
   .active1, .collapsible:hover {
     background-color: #b08968;
   }
-  
+
   .content1 {
     padding: 20px 18px;
     display: none;
@@ -59,6 +58,7 @@ body{
 /* Modal Content */
 .modal-content {
   background-color: #fefefe;
+  color: #fefefe;
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
@@ -82,7 +82,7 @@ body{
 }
 
 /* form */
-input[type=text], input[type=textbox], select {
+input[type=text], input[type=textbox],input[type=password],input[type=date],select {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -110,6 +110,22 @@ input[type=submit] {
 input[type=submit]:hover {
   background-color: #7f5539;
 }
+
+input[type=button] {
+    width: 100%;
+    background-color: #b08968;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  input[type=button]:hover {
+    background-color: #7f5539;
+  }
+
 
 button{border-radius: 8px;background-color: #7f5539; border: none; color: white;padding: 10px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;width: 80%;}
 
@@ -157,9 +173,6 @@ button{border-radius: 8px;background-color: #7f5539; border: none; color: white;
   font-size: 16px;
 }
 
-.progress-0 {
-  background-color: #2f3439;
-}
 .progress-10 {
   background-image: linear-gradient(90deg, #2f3439 50%, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0)), linear-gradient(126deg, #b08968 50%, #2f3439 50%, #2f3439);
 }
@@ -193,25 +206,11 @@ button{border-radius: 8px;background-color: #7f5539; border: none; color: white;
 
 
 .course-item {
-  height: 240px;
+  height: 250px;
   padding: 20px;
   width: 48%;
   float: left;
   margin: 10px;
-}
-
-.main .course-item {
-  background-color: #f1f1f1;
-  height: 220px;
-  padding: 20px;
-  width: 45%;
-  float: left;
-  margin-left: 40px;
-  text-align: center;
-}
-
-.main .course-desc{
-  width: 100%;
 }
 
 .course-title{
@@ -226,18 +225,4 @@ button{border-radius: 8px;background-color: #7f5539; border: none; color: white;
 .course-prog{
   width: 30%;
   float: left;
-}
-
-.course-desc button{
-  width: 30%;
-  margin-right: 5px;
-}
-
-.btn{
-border-radius: 8px;background-color: #7f5539; border: none; color: white;padding: 10px;text-align: center;text-decoration: none;display: inline-block;font-size: 16px;width: 30%;
-}
-
-#progress{
-  height: 50px;
-  font-size: 16px;
 }
