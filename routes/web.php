@@ -102,3 +102,5 @@ Route::any('/createCourse', [CourseController::class, 'createCourse']);
 Route::any('/updateCourse/{id}', [CourseController::class, 'updateCourse']);
 Route::delete('/deleteCourse/{id}', [CourseController::class, 'deleteCourse'])->name('course.deleteCourse');
 Route::get('/timetable', [CourseController::class, 'timetable'])->name('course.timetable');
+Route::get('/course', [CourseController::class, 'index']);
+Route::get('/blog/{id}', [CourseController::class, 'display']);

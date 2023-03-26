@@ -30,6 +30,12 @@ class CourseController extends Controller{
         return view('admin.adminCourse', compact('courses'));
     }
 
+    public function display($id)
+    {
+        $course = Course::findOrFail($id);
+        return view('student.blog', compact('course'));
+    }
+
     public function timetable()
     {
         $timetables = $this->courseRepository->getAll();
