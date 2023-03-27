@@ -16,6 +16,16 @@ class Repository implements RepositoryInterface
         return User::latest()->paginate(10);
     }
 
+    public function allStudent()
+    {
+        return User::where('role', 'student')->get();
+    }
+
+    public function allStaff()
+    {
+        return User::where('role', 'staff')->get();
+    }
+
     public function storeUser($data)
     {
         return User::create($data);
@@ -29,25 +39,36 @@ class Repository implements RepositoryInterface
         return $user != null;
     }
 
+    public function checkexistingUserupdate($email, $phone, $id)
+{
+        $user = User::where(function($query) use ($email, $phone) {
+            $query->where('email', $email)
+                ->orWhere('phone', $phone);
+        })
+        ->where('id', '<>', $id) // exclude current user
+        ->first();
+        return $user != null;
+}
 
-    // public function loginStudent($sEmail, $sPassword)
-    // {
-    //     $customer = Customer::where('cEmail', $cEmail)->first();
-    //     if (!$customer) {
-    //         return false;
-    //     }
-    //     if (!Hash::check($cPassword, $customer->cPassword)) {
-    //         return false;
-    //     }
-    //     Session::put('cID', $customer->cID);
-    //     return true;
-    // }
+    public function update(int $id, array $data): bool {
+        $user = User::find($id);
+        if (!$user) {
+            return false;
+        }
+        $user->fill($data);
+        return $user->save();
+    }
 
-    // public function getProfileCus($cID)
-    // {
+    public function delete($id) {
+        $user = User::find($id);
 
-    //     return Customer::where('cID', $cID)->first();
-    // }
+        if ($user) {
+            $user->delete();
+            return true;
+        }
+
+        return false;
+    }
 
 
 }
