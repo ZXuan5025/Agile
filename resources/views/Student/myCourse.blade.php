@@ -42,7 +42,9 @@
 				{{ $enrollment->cStartTime}} - {{ $enrollment->cEndTime}}<br>
 				{{ $enrollment->cDescription }}
 			</p>
-			<button onclick="evaluation({{ $enrollment->id }})" >Evaluation</button>
+			{{-- <button onclick="evaluation({{ $enrollment->id }})" >Evaluation</button> --}}
+            <button onclick="evaluation({{ $enrollment->id }})">Evaluation</button>
+
 
 
 		<button onclick="var url = '{{ $enrollment->url }}'; window.open(url)">Materials</button>
@@ -89,9 +91,14 @@
 			window.open($filePath, '_blank');
 		}
 
-        function evaluation(eid) {
-            window.location.href = '/evaluation/' + eid;
-        }
+        // function evaluation(eid) {
+        //     window.location.href = '/evaluation/' + eid;
+        // }
+        function evaluation(enrollmentId) {
+    const evaluationUrl = '/evaluation/' + enrollmentId;
+    window.location.href = evaluationUrl;
+}
+
 	  </script>
 
 
