@@ -31,10 +31,17 @@
                     {{ $course->cStartTime}} - {{ $course->cEndTime}}<br>
                     {{ $course->cDescription }}
                 </p>
-                <label for="myfile" class="btn">
+                <!-- <label for="myfile" class="btn">
                   <span>Upload Materials</span>
                 </label>
-                <input type="file" style="display:none;" id="myfile" name="myfile">
+                <input type="file" style="display:none;" id="myfile" name="myfile"> -->
+                <form method="POST" action="/uploadMaterials" enctype="multipart/form-data">
+                  @csrf
+                  @method('PUT')
+                  <input type="file" name="file">
+                  <input type="hidden" name="courseID" value="{{ $course->id }}" >
+                  <button type="submit">Upload</button>
+                </form>
                 <button class="myBtn">Students</button>
                 <div class="modal" style=" overflow-y: scroll;">
                   <div class="modal-content">
@@ -55,6 +62,7 @@
                         $i = 1;
                         @endphp
                         @foreach($students as $student)
+                        
                         <tr>
                           <td>{{ $i }}</td>
                           <td>{{ $student->name }}</td>
@@ -72,6 +80,7 @@
                               @endif
                               @endfor
                             </select>
+                            
                             <input type="text" name="title" class="title" placeholder="Title" value="{{ $student->acTitle }}" style="display: none">
                             <input type="text" name="result" class="result" placeholder="Result" value="{{ $student->acResult }}" style="display: none">
                           </td>
@@ -89,6 +98,16 @@
         </div>
         @endforeach
     </div>
+    @if (session('success'))
+    <script>
+        {!! session('success') !!}
+    </script>
+    @endif
+    @if ($errors->any())
+    <script>
+        alert("{{ implode('\n', $errors->all()) }}");
+    </script>
+    @endif
     <script>
         var modals = document.querySelectorAll(".modal");
         var btns = document.querySelectorAll(".myBtn");
