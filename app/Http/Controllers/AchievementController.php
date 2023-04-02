@@ -22,31 +22,14 @@ class AchievementController extends Controller
 
     public function getAchievementByStudent(){
         $sID = Auth::user()->id;
-        $achievement = Achievement::where('sid',$sID)
+        $achievement = Achievement::join('enrollments','enrollments.id','=','achievements.eID')
+        ->where('enrollments.sID','=',$sID)
         ->where('progress','=',100)
         ->get();
         return $achievement;
     }
 
-    //ze xuan course controller
-    public function myCourse(Request $request){
-        //$user = Auth::user();
-        $id = 1;
-        $enrollments = Enrollment::join('courses', 'courses.id', '=', 'enrollments.cID')
-        ->leftJoin('achievements', 'enrollments.id', '=', 'achievements.eID')
-        ->select('enrollments.sID', 'courses.*', 'achievements.progress')
-        ->where('enrollments.sID','=', $id)
-        ->get();
-        return view("Student.myCourse",["enrollments"=>$enrollments]);
-    }
 
-    //ze xuan course controller
-    public function staffCourse(){
-        //$user = Auth::user();
-        $id = 2;
-        $courses = Course::where('staffID',$id)->get();
-        return view("admin.myCourse",["courses"=>$courses]);
-    }
 
     public function courseStudent($courseID){
         $students = Enrollment::join('users', 'users.id', '=', 'enrollments.sID')
@@ -56,17 +39,28 @@ class AchievementController extends Controller
         ->get();
         return $students;
     }
- 
+
     public function assignAchievement(Request $request, $enrollmentID){
         $achievementID = $request->input('aID');
         $achievement = Achievement::find($achievementID);
+
+        //edit achievement
         if($achievement){
             if($request->input('progress')!=100){
                 $achievement->acTitle = "";
                 $achievement->acResult = "";
             }else{
-                $achievement->acTitle = $request->input('title');
-                $achievement->acResult = $request->input('result');
+                $validatedData = $request->validate([
+                    'title' => 'required|max:50',
+                    'result' => 'required|max:100',
+                ], [
+                    'title.required' => 'The title field is required.',
+                    'title.max' => 'The title field should not be more than 50 characters.',
+                    'result.required' => 'The result field is required.',
+                    'result.max' => 'The result field should not be more than 100 characters.',
+                ]);
+                $achievement->acTitle = $validatedData['title'];
+                $achievement->acResult = $validatedData['result'];
 
                 if($achievement->progress!=100){
                     $email = User::join('enrollments','users.id','=','enrollments.sID')
@@ -80,16 +74,18 @@ class AchievementController extends Controller
             }
             $achievement->progress = $request->input('progress');
             $achievement->save();
+            return redirect()->back()->with('success', 'alert("Achievement updated!")');
         }
+        //insert new achievement
         else{
             $achievement = new Achievement();
-            $achievement->sID=1;
             $achievement->eID = $enrollmentID;
             $achievement->progress = $request->input('progress');
             $achievement->acTitle = "";
             $achievement->acResult = "";
-            $achievement->save();   
+            $achievement->save();
+            return redirect()->back()->with('success', 'alert("Achievement added!")');
         }
-        return redirect()->back()->with('success', 'Achievement updated!');
+
     }
 }
