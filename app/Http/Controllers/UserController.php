@@ -101,4 +101,42 @@ public function redirect(){
     return view('Student.loginStudent');
 }
 
+//Admin Register Page(email address checking)
+public function registerAdminsubmit(Request $request)
+{
+    $data = $request->validate([
+        'name' => 'required|string|max:255',
+        'phone' => 'required|string|max:255',
+        'email' => 'required|string|max:255',
+        'dob' => 'required|date',
+        'role' => 'required|string|max:255',
+        'password' => 'required|string|max:255',
+    ]);
+
+    $data['password'] = Hash::make($data['password']);
+    $data['image'] = "profileimage.jpg";
+
+    $password = $request->input('password');
+    $cpassword = $request->input('cpassword');
+    if($password!= $cpassword){
+        return back()->withInput()->with('wrong2' ,'Password and Confirm Password not match');
+    }
+
+    $sEmail = $request->input('email');
+    $sPhone = $request->input('phone');
+    if($this->Repository->checkexistingUser($sEmail, $sPhone)){
+        return back()->withInput()->with('wrong' ,'Crash Email or Phone with database');
+    } else {
+       //  $name = $request->input('name');
+       //  $time = now();
+       //  $testMailData = [
+       //      'name' =>  $name,
+       //      'date' => $time,
+       //  ];
+       //  Mail::to($sEmail)->send(new SendMail($testMailData));
+        $this->Repository->storeUser($data);
+        return back()->with('successsignup', 'Successfully signup ,please log in your account!');
+    }
+}
+
 }
